@@ -56,7 +56,7 @@ namespace Lab2
             for (int j = 0; j < words.Length;)
             {
 
-                while ((words[j] != '\n' && words[j] != '\t'))
+                while ((j < words.Length && words[j] != '\n' && words[j] != '\t'))
                 {
                     text += words[j];
                     j++;
