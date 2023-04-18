@@ -48,10 +48,10 @@ namespace Lab2
 
             try
             {
-                Convert.ToInt32(txtc1.Text);
-                Convert.ToInt32(txtc2.Text);
-                Convert.ToInt32(txtc3.Text);
-                if (Convert.ToInt32(txtc1.Text) < 0 || Convert.ToInt32(txtc1.Text) > 10 || Convert.ToInt32(txtc2.Text) < 0 || Convert.ToInt32(txtc2.Text) > 10 || Convert.ToInt32(txtc3.Text) < 0 || Convert.ToInt32(txtc3.Text) > 10)
+                Convert.ToSingle(txtc1.Text);
+                Convert.ToSingle(txtc2.Text);
+                Convert.ToSingle(txtc3.Text);
+                if (Convert.ToSingle(txtc1.Text) < 0 || Convert.ToSingle(txtc1.Text) > 10 || Convert.ToSingle(txtc2.Text) < 0 || Convert.ToSingle(txtc2.Text) > 10 || float.Parse(txtc3.Text) < 0 || float.Parse(txtc3.Text) > 10)
                 {
                     MessageBox.Show("Điểm không hợp lệ!");
                     return;
@@ -137,17 +137,20 @@ namespace Lab2
       
         private void button2_Click(object sender, EventArgs e)
         {
-           
-            // Đọc danh sách sinh viên từ file "input4.txt"
-            ds = DocDanhSachSinhVien("input4.txt");
-            foreach (SinhVien sv in ds)
+            try
             {
-                sv.DiemTrungBinh = (sv.DiemMon1 + sv.DiemMon2 + sv.DiemMon3) / 3;
+                // Đọc danh sách sinh viên từ file "input4.txt"
+                ds = DocDanhSachSinhVien("input4.txt");
+                foreach (SinhVien sv in ds)
+                {
+                    sv.DiemTrungBinh = (sv.DiemMon1 + sv.DiemMon2 + sv.DiemMon3) / 3;
+                }
+                MessageBox.Show("Đọc danh sách sinh viên từ file thành công!, đồng thời xuất ra output4 cần thiết");
+
+                GhiDanhSachSinhVien(ds, "output4.txt");
+                XuatDanhSachSinhVien(ds, i);
             }
-            MessageBox.Show("Đọc danh sách sinh viên từ file thành công!, đồng thời xuất ra output4 cần thiết");
-            
-            GhiDanhSachSinhVien(ds, "output4.txt");
-            XuatDanhSachSinhVien(ds, i);
+            catch { }
 
         }
         
